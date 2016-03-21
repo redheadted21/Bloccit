@@ -11,6 +11,11 @@ require 'random_data'
  end
  posts = Post.all
 
+puts "#{Post.count}"
+Post.find_or_create_by(title: "The Best Post in the World", body: "The Best Body in the World")
+puts "#{Post.count}"
+
+
  # Create Comments
  # #3
  100.times do
@@ -20,6 +25,14 @@ require 'random_data'
      body: RandomData.random_paragraph
    )
  end
+
+post = Post.find_or_create_by(title: "The Best Post in the World", body: "The Best Body in the World")
+
+ puts "#{Comment.count}"
+ Comment.find_or_create_by(post: post, body: "The Best Comment in the World")
+ puts "#{Comment.count}"
+
+
 
  puts "Seed finished"
  puts "#{Post.count} posts created"
