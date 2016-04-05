@@ -66,19 +66,19 @@ RSpec.describe AdvertisementsController, type: :controller do
   describe "POST create" do
  # #4
       it "increases the number of Post by 1" do
-        expect{post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Post,:count).by(1)
+        expect{post :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Advertisement,:count).by(1)
       end
 
  # #5
-      it "assigns the new post to @post" do
-        post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-        expect(assigns(:post)).to eq Post.last
+      it "assigns the new advertisement to @advertisement" do
+        post :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        expect(assigns(:advertisement)).to eq Advertisement.last
       end
 
  # #6
-      it "redirects to the new post" do
-        post :create, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-        expect(response).to redirect_to Post.last
+      it "redirects to the new advertisement" do
+        post :create, advertisement: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        expect(response).to redirect_to Advertisement.last
       end
     end
 
