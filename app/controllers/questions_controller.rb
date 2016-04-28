@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
 
   def show
 
+    @question = Question.find(params[:id])
 
   end
 
@@ -35,5 +36,24 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+
+    @question = Question.find(params[:id])
+
   end
+
+  def update
+
+    @question = Question.find(params[:id])
+    @question.title = params[:question][:title]
+    @question.body = params[:question][:body]
+
+    if @question.save
+      flash[:notice] = "Post was updated successfully."
+      redirect_to @question
+    else
+      flash.now[:alert] = "There was an error saving the post. Please try again."
+      render :edit
+    end
+  end
+
 end
