@@ -130,4 +130,19 @@ describe "GET edit" do
      end
    end
 
+   describe "DELETE destroy" do
+     it "deletes the question" do
+       delete :destroy, {id: my_question.id}
+ # #6
+       count = Question.where({id: my_question.id}).size
+       expect(count).to eq 0
+     end
+
+     it "redirects to questions index" do
+       delete :destroy, {id: my_question.id}
+ # #7
+       expect(response).to redirect_to questions_path
+     end
+   end
+
  end
