@@ -32,7 +32,19 @@ require 'random_data'
    )
  end
 
+ 150.times do
+ # #1
+   SponsoredPost.create!(
+ # #2
+     topic:  topics.sample,
+     title:  "Sponsored Post",
+     body:   "Please buy our product",
+     price:  rand(11)
+   )
+ end
+
  puts "Seed finished"
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
+ puts "#{SponsoredPost.count} sponsored posts created"
  puts "#{Comment.count} comments created"

@@ -8,9 +8,20 @@ RSpec.describe SponsoredPostsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
+      get :show, topic_id: my_topic.id, id: my_sponsoredpost.id
       expect(response).to have_http_status(:success)
     end
+
+    it "renders the #show view" do
+      get :show, topic_id: my_topic.id, id: my_sponsoredpost.id
+      expect(response).to render_template :show
+    end
+
+    it "assigns my_sponsoredpost to @sponsored_post" do
+      get :show, topic_id: my_topic.id, id: my_sponsoredpost.id
+      expect(assigns(:sponsored_post)).to eq(my_sponsoredpost)
+    end
+
   end
 
   describe "GET #new" do
@@ -44,9 +55,9 @@ RSpec.describe SponsoredPostsController, type: :controller do
     end
 
  # #6
-    it "redirects to the new post" do
+    it "redirects to the new sponsored post" do
       post :create, topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: rand(11)}
-      expect(response).to redirect_to SponsoredPost.last
+      expect(response).to redirect_to [my_topic, SponsoredPost.last]
     end
 
 
@@ -54,9 +65,27 @@ RSpec.describe SponsoredPostsController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
+      get :edit, topic_id: my_topic.id, id: my_sponsoredpost.id
       expect(response).to have_http_status(:success)
     end
+
+    it "renders the #edit view" do
+       get :edit, topic_id: my_topic.id, id: my_sponsoredpost.id
+ # #1
+       expect(response).to render_template :edit
+     end
+
+ # #2
+     it "assigns post to be updated to @sponsored_post" do
+       get :edit, topic_id: my_topic.id, id: my_sponsoredpost.id
+
+       post_instance = assigns(:sponsored_post)
+
+       expect(post_instance.id).to eq my_sponsoredpost.id
+       expect(post_instance.title).to eq my_sponsoredpost.title
+       expect(post_instance.body).to eq my_sponsoredpost.body
+     end
+
   end
 
 end
