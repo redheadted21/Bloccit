@@ -59,4 +59,18 @@ class SponsoredPostsController < ApplicationController
 
   end
 
+  def destroy
+
+    @sponsored_post = SponsoredPost.find(params[:id])
+
+    if @sponsored_post.delete
+      flash[:notice] = "Post was successfully deleted"
+      redirect_to @sponsored_post.topic
+    else
+      flash[:notice] = "There was an error deleting the post"
+      redirect_to [@sponsored_post.topic, @sponsored_post]
+    end
+
+  end
+
 end
