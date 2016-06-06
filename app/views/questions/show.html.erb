@@ -1,12 +1,15 @@
 <h1><%= @question.title %></h1>
 
+
+
  <div class="row">
    <div class="col-md-8">
+     <% if @question.resolved %>
+      <p><strong>Resolved</strong></p>
+     <% end %>
      <p><%= @question.body %></p>
    </div>
    <div class="col-md-4">
-
-     <%= check_box_tag(:resolved) %>
 
      <%= link_to "Edit", edit_question_path(@question), class: 'btn btn-success' %>
 
