@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def create
- # #9
+    binding.pry
      @post = Post.new
      @post.title = params[:post][:title]
      @post.body = params[:post][:body]

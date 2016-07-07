@@ -18,6 +18,8 @@ ruby '2.2.4'
  group :development, :test do
    gem 'rspec-rails', '~> 3.0'
    gem 'shoulda'
+   gem 'pry-rails'
+   gem 'pry-byebug'
  end
 
  # Use SCSS for stylesheets
